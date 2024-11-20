@@ -134,8 +134,6 @@ class TesteasedggsBoundsEase:
         assert (epsilon_check(test, bounds).all()), \
             'x-dim test of easedggs_grid_bounds using L0 EASE coords failed.'
 
-        return bounds
-
     def test_easedggs_grid_bounds_ease_ydim(self):
         corners, bounds = \
             gen_dim_test(
@@ -159,8 +157,6 @@ class TesteasedggsBoundsEase:
         # comp = epsilon_check(test, bounds).all()
         assert (epsilon_check(test, bounds).all()), \
             'x-dim test of easedggs_grid_bounds using L0 Geo coords failed.'
-
-        return bounds
 
     def test_easedggs_grid_bounds_geo_ydim(self):
         corners, bounds = \
