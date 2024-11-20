@@ -47,8 +47,6 @@ To faciliate reuse and reproducability, the grid and levels specification parame
    + Grid specifications are in: `src\easedggs\grid_spec.json`
    + Level specifications are in: `src\easedggs\levels_spec.json`
 
-NOTE: is it approrpriate to use __init__.py to load those json files into dictionarys that can then be referenced within the library or the common_tools?
-
 ### converting to/from geographic coordinates to Grid IDs 
 One of the main uses of the library is to transform from geographic coordinates to Grid IDs, and to tranform back to geographic cooridnated using Grid IDs. This process is straightforward with the EASE-DGGS library
 
