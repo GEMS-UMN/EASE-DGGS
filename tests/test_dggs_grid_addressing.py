@@ -113,7 +113,7 @@ class TestGridIdsToEase(TestDict):
         valid = GeoSeries(valid, crs = 6933)
 
         results = grid_ids_to_ease(self._test_dict[0]['grid_ids'])
-        assert all(x == True for x in valid.geom_almost_equals(results, decimal=5)) == True, \
+        assert all(x == True for x in valid.geom_equals_exact(results, tolerance=5)) == True, \
             'grid_ids_to_ease failed to return valid EASE coordinates'
 
     def test_grid_ids_to_ease_invalid(self):
