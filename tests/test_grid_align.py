@@ -223,17 +223,17 @@ class TesteasedggsBoundsEase:
 
         test = gen_results(corners, level=6, source_crs=geo_crs)
         assert (epsilon_check(test, bounds).all()), \
-            'x-dim test of easedggs_grid_bounds using L6 Geo coords to L6 GEMS grid failed.'
+            'x-dim test of easedggs_grid_bounds using L6 Geo coords to L6 EASE-DGGS failed.'
 
-class TestGemsAlignCheck:
+class TestDGGSAlignCheck:
     def test_easedggs_align_check_aligned(self):
         aligned_reference = {
             'Projection is EASE-Grid 2.0 (EPSG:6933):': 'Pass',
             'Dataset is rectilinear:': 'Pass',
             'X and Y size are equal:': 'Pass',
-            'Cell size matches a GEMS grid resolution:': 'Pass',
-            'The X dimension of the cell corners matches a GEMS grid corner:': 'Pass',
-            'The Y dimension of the cell corners matches a GEMS grid corner:': 'Pass',
+            'Cell size matches a EASE-DGGS resolution:': 'Pass',
+            'The X dimension of the cell corners matches a EASE-DGGS corner:': 'Pass',
+            'The Y dimension of the cell corners matches a EASE-DGGS corner:': 'Pass',
             'Tests passed out of 6:': '6'
         }
         aligned_results = easedggs_align_check('tests/data/aligned_l1_unprojected_wgs84.tif', 1)
@@ -246,9 +246,9 @@ class TestGemsAlignCheck:
             'Projection is EASE-Grid 2.0 (EPSG:6933):': 'Fail. Supplied CRS is EPSG:4326',
             'Dataset is rectilinear:': 'Pass',
             'X and Y size are equal:': 'Fail',
-            'Cell size matches a GEMS grid resolution:': 'Fail',
-            'The X dimension of the cell corners matches a GEMS grid corner:': 'Fail. Difference = 0.01445',
-            'The Y dimension of the cell corners matches a GEMS grid corner:': 'Fail. Difference = 0.03537',
+            'Cell size matches a EASE-DGGS resolution:': 'Fail',
+            'The X dimension of the cell corners matches a EASE-DGGS corner:': 'Fail. Difference = 0.01445',
+            'The Y dimension of the cell corners matches a EASE-DGGS corner:': 'Fail. Difference = 0.03537',
             'Tests passed out of 6:': '1'
         }
         unaligned_results = easedggs_align_check('tests/data/unprojected_wgs84.tif', 1)
