@@ -40,7 +40,7 @@ Once the package has been installed, you can use the functions as you would any 
 
 ```
 # load the library as you would any other library
-import easedggs.easedggs as eg
+from easedggs.dggs.grid_addressing import geos_to_grid_ids, grid_ids_to_geos, grid_ids_to_ease
 ```
 
 To faciliate reuse and reproducability, the grid and levels specification parameters have been moved to external JSON files.
@@ -49,9 +49,38 @@ To faciliate reuse and reproducability, the grid and levels specification parame
 
 NOTE: is it approrpriate to use __init__.py to load those json files into dictionarys that can then be referenced within the library or the common_tools?
 
-### Usage of `common_tools`
-To be expanded as we add
+### converting to/from geographic coordinates to Grid IDs 
+One of the main uses of the library is to transform from geographic coordinates to Grid IDs, and to tranform back to geographic cooridnated using Grid IDs. This process is straightforward with the EASE-DGGS library
 
+#### Transforming from Geographic Cooridnates to EASE-DGGS Grid IDs using `geos_to_grid_ids`
+```
+# load the library as you would any other library
+from easedggs.dggs.grid_addressing import geos_to_grid_ids
+geos_to_grid_ids(coords_lon_lat=[(-178.81327800830186, 8)])
+# {'success': True, 'result': {'data': ['L0.174003']}}
+
+geos_to_grid_ids(coords_lon_lat=[(-178.81327800830186, 8)], level= 4)
+# {'success': True, 'result': {'data': ['L4.174003.30.02.00.54']}}
+
+geos_to_grid_ids(coords_lon_lat=[(-178.81327800830186, 8)], level= 6)
+# {'success': True, 'result': {'data': ['L6.174003.30.02.00.54.40.80']}}
+```
+
+#### Transforming from EASE-DGGS Grid IDs to Geographic Coordinates using `grid_ids_to_geos`
+```
+from easedggs.dggs.grid_addressing grid_ids_to_geos
+grid_ids_to_geos(grid_ids = ['L0.174003'])
+# {'success': True, 'result': {'data': [(-178.69294605809128, 8.07563685558577)]}}
+
+grid_ids_to_geos(grid_ids = ['L4.174003.30.02.00.54'])
+# {'success': True, 'result': {'data': [(-178.81275933609956, 7.9999873507686745)]}}
+
+grid_ids_to_geos(grid_ids = ['L6.174003.30.02.00.54.40.80'])
+# {'success': True, 'result': {'data': [(-178.81327282157676, 7.9999992318131845)]}}
+```
+
+
+To go from 
 ## Background information the EASE DGGS
 This section is intended to provide an understanding of the EASE-DGGS. The EASE-DGGS is a hybrid Discrete Global Grid System. Much of what is below is now described in the publication [EASE-DGGS: a hybrid discrete global grid system for Earth sciences](https://dx.doi.org/10.1080/20964471.2021.2017539).
 
