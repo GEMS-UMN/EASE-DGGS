@@ -2,14 +2,16 @@
 
 This software is released under an Apache 2.0 license. Further details about the Apache 2.0 license are available in the license.txt file.
 
-# easedggs
-All things relating to the EASE DGGS Soution
+# EASE-DGGS
+All things relating to the EASE DGGS i
 
 ## Setup
-EASE DDGS is now installable as a library! To install the library, simply:
+EASE-DDGS is now installable as a library! To install the library, simply:
    + clone/pull the repo to your local environment
    + cd into the repo directory
    + `pip install .`
+
+Once completed, you will now have the package `easedggs` in your current python environment. 
 
 To uninstall the library, simply:
    + `pip uninstall easedggs`
