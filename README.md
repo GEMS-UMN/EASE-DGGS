@@ -2,14 +2,35 @@
 
 This software is released under an Apache 2.0 license. Further details about the Apache 2.0 license are available in the license.txt file.
 
-# easedggs
-All things relating to the EASE DGGS Soution
+# EASE-DGGS
+EASE-DGGS is a discrete global grid system (DGGS) that based upon Version 2 of the [global Equal-Area Scalable Earth (EASE) Grids](https://nsidc.org/data/user-resources/help-center/guide-ease-grids). The rational for developing the EASE-DGGS library is described in the publication titled: ['EASE-DGGS: a hybrid discrete global grid system for Earth sciences'](https://doi.org/10.1080/20964471.2021.2017539) published in the journal [Big Earth Data](https://www.tandfonline.com/journals/tbed20). 
+
+EASE Grid was originally designed as an early discrete global grid system. From the start it was hierarchical in nature and consisted of raster of various nested resolutions. The main innovation of EASE-DGGS is to replace the cooridnate pair (e.g. longitude, latitude; northings, easting) traditional used to identify spatial locations, with using grid indexex to indicate spatial location. This library contains code to convert traditional WGS84 cooridinate pairs (longitude, latitude) into the Grid ID of the DGGS cell that contains the point. The Grid ID returned will depend on the desired spatial resolution defined in the following specification: 
+
+## EASE-DGGS specifications
+
+We standardize the data to the coordinate system described below and offer multiple spatial resolution choices.
+
+- Coordinate Reference System: EPSG:6933, WGS 84 / NSIDC EASE-Grid 2.0 Global https://epsg.io/6933.
+- Resolution at different levels is described in the table below:
+
+| level   | resolution | 
+| ------- | -----------|
+| 0       | 36 km      |
+| 1       | 9 km       |
+| 2       | 3 km       |
+| 3       | 1 km       |
+| 4       | 100 m      |
+| 5       | 10 m       |
+| 6       | 1 m        |
 
 ## Setup
-EASE DDGS is now installable as a library! To install the library, simply:
+EASE-DDGS is now installable as a library! To install the library, simply:
    + clone/pull the repo to your local environment
    + cd into the repo directory
    + `pip install .`
+
+Once completed, you will now have the package `easedggs` in your current python environment. 
 
 To uninstall the library, simply:
    + `pip uninstall easedggs`
