@@ -25,9 +25,9 @@ def check_coord_range(coord, grid_spec=grid_spec):
     Check that a single lon, lat coordinate pair is within specified ranges.
 
     coords : tuple
-        The tuple with a coodinate pair (lon, lat) to test.
+        The tuple with a coordinate pair (lon, lat) to test.
     grid_spec : dict
-        The dictionary specifiying the min/max lon, lat values.
+        The dictionary specifying the min/max lon, lat values.
 
     Returns:
     result : boolean
@@ -85,7 +85,7 @@ def check_gid_format(gid, gid_regexs = gid_regexs):
     Parameters
     ----------
     gid : string
-        The GESM grid id to test.
+        The DGGS grid id to test.
     gid_regexs : list
         List of precompiled regexes for testing, one per grid level
 
@@ -117,7 +117,7 @@ def check_gid_l0_index(gid, levels_specs=levels_specs):
     grid_id: str
         The grid ID to test.
     levels_specs : dict
-        Dictionary containing grid specification. Default is the master leve_dict.
+        Dictionary containing grid specification. Default is the master level_dict.
 
     Returns:
     result : boolean
@@ -161,7 +161,7 @@ def check_gid_num_element(grid_id):
         return False
 
     # delta; used to for comparing the length of the split grid id string,
-    #   matches the spcified level. The level, lenght split is:
+    #   matches the specified level. The level, length split is:
     #       Level 0 : 2 parts
     #       Level 1 : 3 parts
     #       Level 2 : 4 parts....
@@ -206,7 +206,7 @@ def check_coords_range(coords_lon_lat, grid_spec = grid_spec):
     Check that all lon, lat coordinate pair are within specified ranges.
 
     coords_lon_lat : list
-        The list of coodinate pairs to test.
+        The list of coordinate pairs to test.
 
     Returns:
     result : boolean
@@ -224,14 +224,14 @@ def check_coords_range(coords_lon_lat, grid_spec = grid_spec):
 
 def check_grid_ids_format(grid_ids, gid_regexs = gid_regexs):
     '''
-    Check that all Grid IDs indicies are within specified ranges.
+    Check that all Grid IDs indexes are within specified ranges.
 
     grid_ids : list
         The list of grid IDs to test.
 
     Returns:
     result : boolean
-        Do all Grid IDs have indicies within specified ranges?
+        Do all Grid IDs have indexes within specified ranges?
     '''
     valid = [check_gid_format(gid) for gid in grid_ids]
 
@@ -242,7 +242,7 @@ def check_grid_ids_format(grid_ids, gid_regexs = gid_regexs):
 
 def check_grid_ids_l0_index(grid_ids, levels_specs=levels_specs):
     '''
-    Determines if a list of grid ids have correct index reanges for L0,
+    Determines if a list of grid ids have correct index ranges for L0,
 
     Parameters
     ----------
@@ -251,7 +251,7 @@ def check_grid_ids_l0_index(grid_ids, levels_specs=levels_specs):
 
     Returns:
     result : boolean
-        Do all the grid IDs have correct ranges for L0 indicies?
+        Do all the grid IDs have correct ranges for L0 indexes?
     '''
     if not isinstance(grid_ids, list):
         return False
@@ -312,11 +312,11 @@ def validate_coords_lon_lat(coords_lon_lat):
     Run all the steps to check that lon, lat coordinate pairs.
 
     coords_lon_lat : list
-        The list of coorindate pairs (lon, lat) to check.
+        The list of coordinate pairs (lon, lat) to check.
 
     Returns:
     boolean, data
-        Did all the (lon, lat) cooridnate pairs in the list pass all the validation checks?
+        Did all the (lon, lat) coordinate pairs in the list pass all the validation checks?
         data = error message
     '''
     if not check_coords_range(coords_lon_lat):

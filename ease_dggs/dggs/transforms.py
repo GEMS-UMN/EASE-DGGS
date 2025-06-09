@@ -1,5 +1,5 @@
 '''
-Funtions for geographic transformations on to, and off of the EASE-DGGS.
+Functions for geographic transformations on to, and off of the EASE-DGGS.
 
 © Regents of the University of Minnesota. All rights reserved.
 This software is released under an Apache 2.0 license. Further details about the Apache 2.0 license are available in the license.txt file.
@@ -26,9 +26,9 @@ def ease_coord_to_grid_xy_coord(x_ease, y_ease):
     -------
     (x_grid, y_grid)
     x_grid : float
-        The transformed EASE Grid x cooridinate, in grid space units
+        The transformed EASE Grid x coordinate, in grid space units
     y_grid :  float
-        The transformed EASE Grid x cooridinate, in grid space units
+        The transformed EASE Grid x coordinate, in grid space units
     '''
     if not isinstance(x_ease, float) and not isinstance(y_ease, float):
         return False
@@ -49,7 +49,7 @@ def grid_xy_coord_to_ease_coord(x_grid, y_grid):
     Returns
     -------
     (x_ease, y_ease) : tuple
-        The transformed EASE-DGGS x,y cooridinate in as EASE v2 x,y coordinates
+        The transformed EASE-DGGS x,y coordinate in as EASE v2 x,y coordinates
 
     '''
     if not isinstance(x_grid, float) and not isinstance(y_grid, float):
@@ -72,7 +72,7 @@ def coords_ease_to_coords_grid(coords_ease, level = 0):
     Returns
     -------
     coords_grid: Geopandas GeoSeries
-        GeoSeries of transformed coodinante pair points in the EASE-DGGS coordinate system.
+        GeoSeries of transformed coordinate pair points in the EASE-DGGS coordinate system.
     '''
     if not isinstance(coords_ease, GeoSeries):
         return False
@@ -83,11 +83,11 @@ def coords_ease_to_coords_grid(coords_ease, level = 0):
 
 def coords_lon_lat_to_coords_ease(coords_lon_lat, source_crs = geo_crs, target_crs = ease_crs):
     '''
-    Convience function for converting between geographic and EASE grid cooridnates.
+    Convenience function for converting between geographic and EASE grid coordinates.
     Parameters
     ----------
     coords_lon_lat : list
-       List of coordinate pairs (longitude, latitude) of geographic cooridnates.
+       List of coordinate pairs (longitude, latitude) of geographic coordinates.
     source_crs : int
         The EPSG code for the source geographic coordinate pair. Default is 4326.
     target_crs : int
@@ -96,7 +96,7 @@ def coords_lon_lat_to_coords_ease(coords_lon_lat, source_crs = geo_crs, target_c
     Returns
     -------
     coords_ease : list
-        List of transformed coordinate pairs (lon, lat), now in EASE Grid v2 cooridnates(ease_x, ease_y).
+        List of transformed coordinate pairs (lon, lat), now in EASE Grid v2 coordinates(ease_x, ease_y).
     '''
 
     if not isinstance(coords_lon_lat, list):

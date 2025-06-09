@@ -87,23 +87,23 @@ def children_to_parents(children, level=0):
 
 def gen_child_geometries(parent_geometry, parent_id, child_level, wkt_geom = True):
     '''
-    Generate child cell characterisitcs from parent cells.
+    Generate child cell characteristics from parent cells.
 
     Parameters
     ----------
     parent_geometry : polygon
-       WKT with parent polygone.
+       WKT with parent polygon.
     parent_id : float
         The cell id of the parent cell.
     child_level _ int
         The grid level of the child to create
     wkt_geom : boolean
-        Denotes that partent_geometry is wkt
+        Denotes that parent_geometry is wkt
 
     Returns
     -------
     row_ID, column_ID, Grid_ID, geoms, centroid    : tuple
-        Relevant child cell characteritics: Row ID, Column ID, Grid ID, Geometry and Centroid
+        Relevant child cell characteristics: Row ID, Column ID, Grid ID, Geometry and Centroid
     '''
     if wkt_geom:
         parent_geometry = wkt.loads(parent_geometry)

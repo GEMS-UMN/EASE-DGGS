@@ -50,13 +50,13 @@ def grid_id_to_corner_coord(gid, level, shift=False):
         EASE grid coordinate (x, y) of the cell' corner. Resolution determined using grid ID.
     """
     # r_digit = 6
-    # decompse the EASE-DGGS ID into its level parts. Then remove the first compoenent
+    # decompose the EASE-DGGS ID into its level parts. Then remove the first component
     #   which, is simply represent the Level of the cell.
     id_elements = gid.split('.')
     # level = int(id_elements[0][-1])
     id_elements.pop(0)
 
-    # the gridID contains the index values for number of rows|columns, from a 0,0 orgin
+    # the gridID contains the index values for number of rows|columns, from a 0,0 origin
     #   This is the 'global' position within the larger grid
     #
     #  Remember format is Lx.RRRCCC.RC.RC ...; y=R, x=C
@@ -77,31 +77,31 @@ def grid_id_to_corner_coord(gid, level, shift=False):
     #     x = 482 * level[0]['x_length] + 3 * [level[1]['x_length] + 2 * [level[`2`]['x_length]
     #     y = 202 * [level[0]['x_length] + 1 * [level[1]['x_length] + 1 * [level[2]['x_length]
     #
-    #   and to determin if it is an edge at level 2, all the remaining Level components must be
+    #   and to determine if it is an edge at level 2, all the remaining Level components must be
     #       zero: [ 0, 0, 0, 0]] summing them all ensure that they are zero
     #
     #   if we asked for the Level 1 coordinate, it would be different. x|y coord is calculated
-    #   using the L0, L1 compoents:
+    #   using the L0, L1 components:
     #   x = 482 * level[0]['x_length] + 3 * [level[1]['x_length] + 2
     #
-    #   but then we need to check if it is on an L1 edge. this requires all other compontes to be
+    #   but then we need to check if it is on an L1 edge. this requires all other components to be
     #       zeros:
     #       [2, 0, 0, 0, 0]
-    #   since it is not a Level 1 edge, if we needed a right, bottom value, we'd have to shfit
+    #   since it is not a Level 1 edge, if we needed a right, bottom value, we'd have to shift
     #       the last L1 index up by one
 
     # beyond level 0, the row | column index is grid location within the L0 pixes
-    #    This is the relative position within the gloabl position.
-    # spliting these into indexes, which requires converstion from str to ints
+    #    This is the relative position within the global position.
+    # splitting these into indexes, which requires conversion from str to ints
     level_x_i = np.array([int(id[1]) if len(id) != 6 else int(id[3:]) \
                           for id in id_elements], dtype=int)
     level_y_i = np.array([int(id[0]) if len(id) != 6 else int(id[0:3]) \
                           for id in id_elements], dtype=int)
 
     # remainders of levels are useful for figuring out if on edge on not
-    #   depending on supplied level, we can drop unnecesary levels for
-    #   determining the coodinates, but only need the levels < specified
-    #   level for determing if it is an edge pixel or not
+    #   depending on supplied level, we can drop unnecessary levels for
+    #   determining the coordinates, but only need the levels < specified
+    #   level for determining if it is an edge pixel or not
     if int(level) < 6:
         level_x_r = level_x_i[int(level) + 1:]
         level_y_r = level_y_i[int(level) + 1:]
@@ -145,7 +145,7 @@ def easedggs_grid_bounds(bounds, source_crs, level):
     Parameters
     ----------
     bounds : tuple
-        Tuple with the (min_x/left, min_y/bottom, max_x/right, max_y/top) of the soure raster.
+        Tuple with the (min_x/left, min_y/bottom, max_x/right, max_y/top) of the source raster.
     level : int
         EASE-DGGS Level of the
     source_crs : int
@@ -154,33 +154,33 @@ def easedggs_grid_bounds(bounds, source_crs, level):
     Returns
     ----------
     easedggs_grid_bounds : tuple of floats
-        Bounding box coordidinates with valid EASE-DGGS coordinates.
+        Bounding box coordinates with valid EASE-DGGS coordinates.
     """
     # first, convert the bounds coordinates into corner coordinates. these are tuples.
-    #   next, convert the corners to 'line_segements'. these are the coordinate pairs
+    #   next, convert the corners to 'line_segments'. these are the coordinate pairs
     #   connecting the corners
     #
-    # Those line segmensts have 'duplicate' entries, since each line segment ends where next starts
-    #   once we've delt with non-ease sourc_src below, we'll drop the final element of
+    # Those line segments have 'duplicate' entries, since each line segment ends where next starts
+    #   once we've dealt with non-ease source_src below, we'll drop the final element of
     #   of line_segments, to reduce duplicates
     lower_left, upper_left, lower_right, upper_right = \
         chain(product([bounds[0], bounds[2]], [bounds[1], bounds[3]]))
     # print(f'conrner passed in: {corners}')
     line_segments = list(pairwise_circle([upper_left, upper_right, lower_right, lower_left]))
 
-    # if not in EASE v2, need to build a cood tranformer to get coords into EASE
+    # if not in EASE v2, need to build a coord transformer to get coords into EASE
     #   also need to add nodes to the each line segment. once that is done, we use
     #   the transformer to convert all individual nodes to EASE, while maintaining the
     #   original order.
     #   then use
     if source_crs != ease_crs:
         line_segments = [add_nodes(ls[0], ls[1]) for ls in line_segments]
-        tranform_coords = Transformer.from_crs(source_crs, ease_crs, always_xy=True).transform
-        line_segments = [[tranform_coords(c[0], c[1]) for c in seg] for seg in line_segments]
+        transform_coords = Transformer.from_crs(source_crs, ease_crs, always_xy=True).transform
+        line_segments = [[transform_coords(c[0], c[1]) for c in seg] for seg in line_segments]
 
     # may not need to drop the last elements in each list (recall, the last element of
     #   one list, is the start of the next) since we'll just be using the nodes as Points
-    #   in a geoseries. but if we wanted to make Polygon, the duplciate values pose
+    #   in a GeoSeries. but if we wanted to make Polygon, the duplicate values pose
     #   problems
     line_segments = flatten([seg[:-1] for seg in line_segments])
     bound_box = GeoSeries([Point(c[0], c[1]) for c in line_segments],
@@ -228,7 +228,7 @@ def easedggs_align_check(in_raster, level):
     The final 2 tests check that if you were to extrapolate your
     raster out to a global extent, that the upper left corner of the
     EASE-DGGS falls on the upper left corner of one of the input
-    raster's extraploted cells.
+    raster's extrapolated cells.
 
 
     Parameters

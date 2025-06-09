@@ -17,12 +17,12 @@ from ease_dggs.logConfig import logger
 
 def format_response(data, success):
     '''
-    Format the library repsonse for return to API
+    Format the library response for return to API
     Args:
          data: list
             Contains data, or the error message
         success :(boolean)
-            Indicatication of function success or failure.
+            Indication of function success or failure.
     Returns:
         response : dict
             The formatted response to return to the API.
@@ -84,7 +84,7 @@ def get_polygon_corners(polygon, ccw=True):
     Returns
     -------
     bounds : tuple
-        Corner coodinates for the bounding box/evevlope of the polygon.
+        Corner coordinates for the bounding box/envelope of the polygon.
     '''
 
     if type(polygon) is str:
@@ -121,7 +121,7 @@ def enumerate_id_elements(refine_ratio):
 
 def enumerate_grid_table_rows(x_coords, y_coords, level=0, parent_id = None):
     '''
-    Generate grid polygons for cells using x, y cooridnate vectors.
+    Generate grid polygons for cells using x, y coordinate vectors.
     Parameters
     ----------
     x_coords : float
@@ -135,7 +135,7 @@ def enumerate_grid_table_rows(x_coords, y_coords, level=0, parent_id = None):
 
     Returns
     -------
-    Relevant child cell characteritics: Row ID, Column ID, Grid ID, Geometry and Centroid
+    Relevant child cell characteristics: Row ID, Column ID, Grid ID, Geometry and Centroid
     '''
     geoms = []
     r_ind = []
@@ -177,25 +177,25 @@ def enumerate_grid_table_rows(x_coords, y_coords, level=0, parent_id = None):
 
 def gen_point_grid(upper_left, upper_right, lower_right, lower_left, delta_x, delta_y, target_crs = ease_crs):
     '''
-    Generates a grid of equally spaced points, between geograhic extent
+    Generates a grid of equally spaced points, between geographic extent
 
     upper_left : shapely Point
-        cooridinate for the upper left of the geographic extent
+        coordinate for the upper left of the geographic extent
 
     upper_right : shapely Point
-        cooridinate for the upper right of the geographic extent
+        coordinate for the upper right of the geographic extent
 
     lower_right : shapely Point
-        cooridinate for the lower right of the geographic extent
+        coordinate for the lower right of the geographic extent
 
     lower_left : shapely Point
-        cooridnate for the lower left of the geographic extent
+        coordinate for the lower left of the geographic extent
 
     delta_x : float
-        horizontal distance between subsequent cooridnates
+        horizontal distance between subsequent coordinates
 
     delta_y : float
-        vertical distance between subsequent cooridnates
+        vertical distance between subsequent coordinates
 
     returns:
     point_grid : pandas GeoDataFame
@@ -241,18 +241,18 @@ def calc_grid_coord_vectors(min_x, min_y, max_x, max_y, level=0, levels_specs = 
     Parameters
     ----------
     min_x : float
-        EASE Grid cooridinates of left edge of bounding box.
+        EASE Grid coordinates of left edge of bounding box.
     min_y : float
-        EASE Grid cooridinates of bottom edge of bounding box.
+        EASE Grid coordinates of bottom edge of bounding box.
     max_x : float
-        EASE Grid cooridinates of right edge of bounding box.
+        EASE Grid coordinates of right edge of bounding box.
     max_y : TYPE
-        EASE Grid cooridinates of top edge of bounding box.
+        EASE Grid coordinates of top edge of bounding box.
 
     Returns
     -------
     x_coord_vector, y_coord_vector : np.array
-        Numpy arrays of x, y cooridinates at specified level.
+        Numpy arrays of x, y coordinates at specified level.
     '''
     # user in puts the number of columns/rows of the grid.
     # number of grid edges is column/rows +1
@@ -263,7 +263,7 @@ def calc_grid_coord_vectors(min_x, min_y, max_x, max_y, level=0, levels_specs = 
         y_row = levels_specs[level]['n_row'] + 1
 
     # for all levels > 0, the refine_ratio is used to derive the number of cells.
-    #    the refine_ratio for levels is associuated with the partent in the dict
+    #    the refine_ratio for levels is associated with the parent in the dict
     else:
         level = level -1
         level = str(level)
@@ -369,7 +369,7 @@ def shift_range_grid_xy(val, axis):
 
 def shift_range_grid_multiple(val, axis):
     '''
-    Convert 1-d EASE-DGGS coordinate (x | y) * levels_specs[0]['x_lenth']
+    Convert 1-d EASE-DGGS coordinate (x | y) * levels_specs[0]['x_length']
     to EASE v2 grid coordinate.
 
     Parameters
@@ -413,7 +413,7 @@ def trunc(vals, decimals=0):
     Returns
     -------
     numpy.array
-        Array truncated at deimal place
+        Array truncated at decimal place
     '''
     return np.trunc(vals*10**decimals)/(10**decimals)
 
@@ -428,7 +428,7 @@ def flatten(list):
     Returns
     -------
     flattened list
-        Single list indvidual elements
+        Single list individual elements
     '''
     return [li for sub_list in list for li in sub_list]
 
@@ -481,10 +481,10 @@ def epsilon_check(x, y, E = 1e-5) -> bool:
     '''
     return abs(x-y) <= E
 
-    # basic idea of add_node is that a line segement can be minimally defined
+    # basic idea of add_node is that a line segment can be minimally defined
 #   using two points. here, these are teh start, end points. The aim of this
 #   function is to add addition points into the line segment at regular intervals
-#   condider:
+#   consider:
 #
 #   initial condition:
 #   start                    end
@@ -503,13 +503,13 @@ def add_nodes(start, end, nodes = 21):
     end : tuple
         Ending coordinate pair of line segment to add nodes to.
     nodes : int, optional
-        Number of nodes to add to line segement, by default 21.
+        Number of nodes to add to line segment, by default 21.
     # drop_end : boolean, optional
     #     Drop the final coordinate pair of the series, by default True.
     Returns
     ----------
-    new line segement : list
-        List with nodes added inbetween start, end.
+    new line segment : list
+        List with nodes added in between start, end.
     '''
     xs = np.linspace(start[0], end[0], nodes)
     ys = np.linspace(start[1], end[1], nodes)

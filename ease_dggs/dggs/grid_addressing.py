@@ -34,21 +34,21 @@ from ease_dggs.logConfig import logger
 
 def geos_to_grid_ids(coords_lon_lat, level=0, levels_specs=levels_specs, source_crs = 4326, target_crs=ease_crs):
     '''
-    Return the EASE-DGGS ID for the cell correpsonding with lon, lat pair.
+    Return the EASE-DGGS ID for the cell corresponding with lon, lat pair.
 
     Parameters
     ----------
     coords_lon_lat : list
-       List of longitude,latitude cooridnate pairs (lon, lat).
+       List of longitude,latitude coordinate pairs (lon, lat).
     level _ int
-        The specific resolution in the heiararch for the corresponding grid cell. Default is 0, the coarsest resolution.
-    levels_specs : dictonary
-        The dictionary with paratmer and config options. Default is 'levels_specs'
+        The specific resolution in the hierarchy for the corresponding grid cell. Default is 0, the coarsest resolution.
+    levels_specs : dictionary
+        The dictionary with parameter and config options. Default is 'levels_specs'
 
     Returns
     -------
     grid_id : dict
-        The grid IDs of the cells for the cooridnates, at the specified resolution that correspond with (lon, lat)
+        The grid IDs of the cells for the coordinates, at the specified resolution that correspond with (lon, lat)
     '''
 
     if not check_level(level):
@@ -71,7 +71,7 @@ def geos_to_grid_ids(coords_lon_lat, level=0, levels_specs=levels_specs, source_
 
 def _gid_to_coord_ease(gid, cell_scale_factors  = cell_scale_factors, centroid_offset = 0.5):
     '''
-    Convert EASE-DGGS cell ID to ease_x, ease_y cooridnates.
+    Convert EASE-DGGS cell ID to ease_x, ease_y coordinates.
 
     Parameters
     ----------
@@ -84,7 +84,7 @@ def _gid_to_coord_ease(gid, cell_scale_factors  = cell_scale_factors, centroid_o
     Returns
     -------
     ease_x, ease_y : tuple
-        ease_x, ease_y cooridnates of the specified cell.
+        ease_x, ease_y coordinates of the specified cell.
     '''
     if not isinstance(gid, str):
         return False
@@ -113,7 +113,7 @@ def _gid_to_coord_ease(gid, cell_scale_factors  = cell_scale_factors, centroid_o
     y_row_elements = np.array(y_row_elements)
     x_col_elements = np.array(x_col_elements)
 
-    # remove unused levels from the arrays; makes book keeing easier
+    # remove unused levels from the arrays; makes book keeping easier
     cell_scale_factors = cell_scale_factors[0:index_max]
 
     y_row_scaled = y_row_elements * cell_scale_factors
@@ -132,7 +132,7 @@ def _gid_to_coord_ease(gid, cell_scale_factors  = cell_scale_factors, centroid_o
 
 def grid_ids_to_ease(grid_ids, cell_scale_factors  = cell_scale_factors, target_crs = ease_crs):
     '''
-    Convert a list of EASE-DGGS IDs to EASE Grid v2 cooridnates: Point(ease_x, ease_y).
+    Convert a list of EASE-DGGS IDs to EASE Grid v2 coordinates: Point(ease_x, ease_y).
 
     Parameters
     ----------
@@ -145,7 +145,7 @@ def grid_ids_to_ease(grid_ids, cell_scale_factors  = cell_scale_factors, target_
     Returns
     -------
     coords_ease : GeoSeries
-        GeoSeies of coordinates (ease_x, ease_y) for corresponding grid IDs.
+        GeoSeries of coordinates (ease_x, ease_y) for corresponding grid IDs.
     '''
 
     if not isinstance(grid_ids, list):
@@ -159,7 +159,7 @@ def grid_ids_to_ease(grid_ids, cell_scale_factors  = cell_scale_factors, target_
 
 def grid_ids_to_geos(grid_ids, cell_scale_factors  = cell_scale_factors, source_crs=ease_crs, target_crs=geo_crs):
     '''
-    Convert EASE-DGGS cell ID to ease_x, ease_y cooridnates.
+    Convert EASE-DGGS cell ID to ease_x, ease_y coordinates.
 
     Parameters
     ----------
@@ -193,8 +193,8 @@ def _grid_xy_to_grid_id(grid_xy, level=0):
 
     Parameters
     ----------
-    grid_xy : Shapley point(x,y)
-        EASE-DGGS cooridnate point
+    grid_xy : Shapeley point(x,y)
+        EASE-DGGS coorinate point
 
     level : str, optional
         EASE-DGGS level/resolution. Defaults to 0.
@@ -209,17 +209,17 @@ def _grid_xy_to_grid_id(grid_xy, level=0):
 
     # small number problem. This is section comes from a discussion
     #   with David Porter & other GEMS devs. Basically, it is  way
-    #   of arriving at a calculated way of determing where to round
+#   of arriving at a calculated way of determining where to round
     #
-    # the calculation below effectively determins that 8 decimal places
+# the calculation below effectively determines that 8 decimal places
     #   is a reasonable place to round. The assumption is the EASE grid
     #   values will be anywhere between min/max, which is the space for values
     #   with the precision we're working with from pyproj etc, the 10e15 term
     #   is used to get a sense of what a small number in EASE v2 is
     #
-    # in pract, rounding to 8 decimals in the grid_xy space (basically, index space)
-    #   means we can detect differences in coordinates on the order of milimeters.
-    #   so far, simmple testing has meant that this should be good enough enough for
+    # in practice, rounding to 8 decimals in the grid_xy space (basically, index space)
+    #   means we can detect differences in coordinates on the order of millimeters.
+    #   so far, simple testing has meant that this should be good enough enough for
     #   determining multiples in grid_xy space using np.divmod
     #
     r_digit = 6 # 6 works; 8 causes problems with y dims
@@ -228,13 +228,13 @@ def _grid_xy_to_grid_id(grid_xy, level=0):
     np.set_printoptions(precision=6)
 
     # small rounding differences around 0 were causing problems.
-    #   in particualr, along the left hand edge of the grid,
+    #   in particular, along the left hand edge of the grid,
     #   some of the x values were negative, and slightly less
     #   than 0. because np.divmod (used for dividing the cell)
     #   uses a floor operation, those numbers that were < 0, the floor
     #   results in them being -1,not 0. This can be corrected with rounding
     #   or other solutions, but since the grid is only defined for positive x,y
-    #   values, the simplist solution is for
+    #   values, the simple solution is for
     if x < 0.0:
         x = 0.
 
@@ -252,10 +252,10 @@ def _grid_xy_to_grid_id(grid_xy, level=0):
 
         # because coordinate were transformed above, nothing needed here.
         #   both x,y integer-parts represent the major Level 0 grid cell
-        #       in grid cooridnate space
+        #       in grid coordinate space
         #
         #   the float-part indicate the sub-location in that pixel. later, the
-        #      the mod will be multipled by the refine_ratio, which will give the
+        #      the mod will be multiplied by the refine_ratio, which will give the
         #      location in the finer mesh grids
         x_div, x_mod = np.divmod(x, 1)
         y_div, y_mod = np.divmod(y, 1)
@@ -330,7 +330,7 @@ def ease_polygon_to_grid_ids(polygon_ease, level=0, source_crs = ease_crs,  leve
 
     # having issues where corner coords are not quite behaving
     #   as might be expected. cell L0.202482 is causing difficulties
-    #   when trying to map the locations of conrers, I am going to add
+    #   when trying to map the locations of corners, I am going to add
     #   small buffer to the polygon, to try and fix the problem
     #   will add 1/2 the smallest grid cell size. cap_type = 3 is
     #   square buffer
@@ -362,8 +362,8 @@ def ease_polygon_to_grid_ids(polygon_ease, level=0, source_crs = ease_crs,  leve
                                 delta_x = delta_x , delta_y = delta_y)
 
 
-    # ok, below presumes dtaframes, but the shapes input is not
-    # RETHING df use, and just use the shapely options?
+    # ok, below presumes dataframes, but the shapes input is not
+    # RETHINKING df use, and just use the shapely options?
     polygon_ease_in = gpd.GeoDataFrame({'name':['test_shape'], 'geometry': polygon_ease_in}, crs=source_crs)
 
 
@@ -396,7 +396,7 @@ def geo_polygon_to_grid_ids(polygon_lon_lat, level=0, source_crs = geo_crs, targ
         The source EPSG code for the polygon. Default is 4326 (lon, lat).
 
     target_crs : int
-        The targest EPSG code for the polygon. Default is 6933 (EASE Grid v2)
+        The target EPSG code for the polygon. Default is 6933 (EASE Grid v2)
 
     Returns
     -------
