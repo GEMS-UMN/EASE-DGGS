@@ -1,11 +1,9 @@
 from setuptools import setup, find_packages
 
-from setuptools import setup, find_packages
-
 setup(
     name="ease-dggs",
     version="0.2.0",
-    description='EASE-DGGS Library Code and Tools',
+    description='Python utilities for EASE-based discrete global grid systems',
     url='https://github.com/GEMS-UMN/EASE-DGGS',
     author='GEMS Geospatial Developers',
     author_email='gemssupport@umn.edu',
@@ -22,8 +20,15 @@ setup(
         ],
     python_requires=">=3.9",
     classifiers=[
-        'Programming Language :: Python :: 3.9',
+         "License :: OSI Approved :: Apache Software License",
+        "Operating System :: OS Independent",
+        "Development Status :: 3 - Alpha",
+        "Intended Audience :: Science/Research",
+        "Topic :: Scientific/Engineering :: GIS",
         ],
     license="Apache-2.0",
+    project_urls={
+        "Homepage": "https://github.com/GEMS-UMN/EASE-DGGS",
+        "Repository": "https://github.com/GEMS-UMN/EASE-DGGS",
+    },
 )
-

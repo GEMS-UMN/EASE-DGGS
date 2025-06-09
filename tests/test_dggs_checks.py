@@ -8,14 +8,14 @@ import pytest
 
 import numpy as np
 
-from easedggs.constants import levels_specs
+from ease_dggs.constants import levels_specs
 from tests.conftest import TestDict
 
-# from easedggs.dggs.validate import check_coord_range, check_coords_range, \
+# from ease_dggs.dggs.validate import check_coord_range, check_coords_range, \
 #     validate_ccd sroords_lon_lat, check_level, check_gid_format, check_grid_ids_format, \
 #     check_gid_l0_index, check_grid_ids_l0_index, check_gid_num_element, \
 #     check_gid_start_with, check_grid_ids_starts_with, validate_grid_ids
-from easedggs.dggs.checks import *
+from ease_dggs.dggs.checks import *
 
 class TestCheckCoordRange(TestDict):
     '''Test fof Checking Cooridnate Ranges'''

@@ -11,12 +11,12 @@ import numpy as np
 from geopandas import GeoDataFrame
 from shapely.geometry import Point
 
-from easedggs.constants import grid_spec, levels_specs, cell_scale_factors, ease_crs
+from ease_dggs.constants import grid_spec, levels_specs, cell_scale_factors, ease_crs
 
-# from easedggs.dggs.utils import _shift_range, shift_range_ease, shift_range_grid_xy, \
+# from ease_dggs.dggs.utils import _shift_range, shift_range_ease, shift_range_grid_xy, \
 #     shift_range_grid_multiple, enumerate_id_elements, gen_point_grid
 
-from easedggs.dggs.utils import *
+from ease_dggs.dggs.utils import *
 
 valid_elements = ['00', '01',  '02', '03',
                 '10', '11','12', '13',

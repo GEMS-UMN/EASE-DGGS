@@ -12,13 +12,13 @@ from geopandas import GeoSeries
 from shapely.geometry import Point
 
 from tests.conftest import TestDict, ValidGems
-from easedggs.constants import grid_spec, levels_specs, cell_scale_factors
+from ease_dggs.constants import grid_spec, levels_specs, cell_scale_factors
 
-from easedggs.dggs.utils import shift_range_ease, shift_range_grid_xy, shift_range_grid_multiple
-from easedggs.dggs.transforms import coords_lon_lat_to_coords_ease, coords_ease_to_coords_grid, \
+from ease_dggs.dggs.utils import shift_range_ease, shift_range_grid_xy, shift_range_grid_multiple
+from ease_dggs.dggs.transforms import coords_lon_lat_to_coords_ease, coords_ease_to_coords_grid, \
     grid_xy_coord_to_ease_coord
 
-from easedggs.dggs.grid_addressing import geos_to_grid_ids, grid_ids_to_geos, grid_ids_to_ease,  \
+from ease_dggs.dggs.grid_addressing import geos_to_grid_ids, grid_ids_to_geos, grid_ids_to_ease,  \
         _gid_to_coord_ease, _grid_xy_to_grid_id, ease_polygon_to_grid_ids, geo_polygon_to_grid_ids
 
 '''

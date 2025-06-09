@@ -6,9 +6,9 @@ This software is released under an Apache 2.0 license. Further details about the
 '''
 import numpy as np
 
-from easedggs.constants import levels_specs, ease_crs, geo_crs
-from easedggs.dggs.utils import epsilon_check, pairwise_circle
-from easedggs.grid_align import e2w, easedggs_grid_bounds, grid_id_to_corner_coord, easedggs_align_check
+from ease_dggs.constants import levels_specs, ease_crs, geo_crs
+from ease_dggs.dggs.utils import epsilon_check, pairwise_circle
+from ease_dggs.grid_align import e2w, easedggs_grid_bounds, grid_id_to_corner_coord, easedggs_align_check
 
 class TestGridIdToCornerCoords:
     test_set = ['L6.202481.00.00.00.00.00.00', 'L6.202483.00.00.00.00.00.00',

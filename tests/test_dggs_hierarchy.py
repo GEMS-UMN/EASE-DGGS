@@ -10,7 +10,7 @@ from pytest import approx
 
 from tests.conftest import TestDict
 
-from easedggs.dggs.hierarchy import _child_to_parent, children_to_parents, \
+from ease_dggs.dggs.hierarchy import _child_to_parent, children_to_parents, \
     grid_aggregate, _parent_to_children, parents_to_children
 
 class TestParentChildRelations(TestDict):

@@ -268,7 +268,7 @@ def grid_aggregate(grid_ids, grid_vals, level = 0, method = 'mean', levels_specs
         out_ids = agg.index.to_list()
         out_vals = list(agg.values)
     else:
-        logger.warning('Error in heirarchy.py. Else condition encounter that shoudl not be possible.')
+        logger.warning('Error in heirarchy.py. Else condition encounter that should not be possible.')
 
     return format_response({'grid_ids' : out_ids, 'values' : out_vals}, True)
 

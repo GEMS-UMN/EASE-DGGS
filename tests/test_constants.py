@@ -9,7 +9,7 @@ import pytest
 import numpy as np
 from pyproj import Transformer
 
-from easedggs.constants import levels_specs, grid_spec
+from ease_dggs.constants import levels_specs, grid_spec
 
 # consensus was to generate the grid and level specifications
 #   using code. the functions to do this are here

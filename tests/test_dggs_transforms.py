@@ -11,9 +11,9 @@ from shapely.geometry import Point
 
 from tests.conftest import TestDict, ValidGems
 
-from easedggs.constants import ease_crs
+from ease_dggs.constants import ease_crs
 
-from easedggs.dggs.transforms import *
+from ease_dggs.dggs.transforms import *
 
 class TestEaseCoordToGridXYCoord(TestDict):
     def results(self):
