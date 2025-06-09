@@ -23,6 +23,7 @@ setup(
     python_requires=">=3.9",
     classifiers=[
         'Programming Language :: Python :: 3.9',
-        ]
+        ],
+    license="Apache-2.0",
 )
 
