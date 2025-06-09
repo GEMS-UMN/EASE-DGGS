@@ -16,10 +16,10 @@ from itertools import chain, product
 from pyproj import Transformer
 from shapely.geometry import Point
 
-from easedggs.constants import levels_specs, grid_spec, ease_crs, geo_crs
+from ease_dggs.constants import levels_specs, grid_spec, ease_crs, geo_crs
 
-from easedggs.dggs.grid_addressing import coords_ease_to_coords_grid, _grid_xy_to_grid_id
-from easedggs.dggs.utils import shift_range_grid_multiple, pairwise_circle, flatten, \
+from ease_dggs.dggs.grid_addressing import coords_ease_to_coords_grid, _grid_xy_to_grid_id
+from ease_dggs.dggs.utils import shift_range_grid_multiple, pairwise_circle, flatten, \
     add_nodes, epsilon_check
 
 ######

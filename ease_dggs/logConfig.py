@@ -23,4 +23,4 @@ logging.basicConfig(
     encoding='utf-8'
 )
 
-logger = logging.getLogger('easedggs')
+logger = logging.getLogger('ease_dggs')

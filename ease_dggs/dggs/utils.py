@@ -12,8 +12,8 @@ import geopandas as gpd
 from shapely import wkt
 from shapely.geometry import Polygon, Point
 
-from easedggs.constants import levels_specs, ease_crs, grid_spec
-from easedggs.logConfig import logger
+from ease_dggs.constants import levels_specs, ease_crs, grid_spec
+from ease_dggs.logConfig import logger
 
 def format_response(data, success):
     '''

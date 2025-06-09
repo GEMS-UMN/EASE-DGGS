@@ -7,9 +7,9 @@ This software is released under an Apache 2.0 license. Further details about the
 from geopandas import GeoSeries
 from shapely.geometry import Point
 
-from easedggs.constants import grid_spec, levels_specs, ease_crs, geo_crs, cell_scale_factors
+from ease_dggs.constants import grid_spec, levels_specs, ease_crs, geo_crs, cell_scale_factors
 
-from easedggs.dggs.utils import shift_range_ease, shift_range_grid_xy
+from ease_dggs.dggs.utils import shift_range_ease, shift_range_grid_xy
 
 def ease_coord_to_grid_xy_coord(x_ease, y_ease):
     '''

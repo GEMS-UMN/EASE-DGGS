@@ -13,14 +13,14 @@ import pandas as pd
 
 from shapely import wkt
 
-from easedggs.constants import levels_specs
-from easedggs.dggs.checks import validate_grid_ids, check_level
+from ease_dggs.constants import levels_specs
+from ease_dggs.dggs.checks import validate_grid_ids, check_level
 
-from easedggs.dggs.utils import format_response, enumerate_id_elements
-from easedggs.dggs.utils import enumerate_grid_table_rows
-from easedggs.dggs.utils import calc_grid_coord_vectors
+from ease_dggs.dggs.utils import format_response, enumerate_id_elements
+from ease_dggs.dggs.utils import enumerate_grid_table_rows
+from ease_dggs.dggs.utils import calc_grid_coord_vectors
 
-from easedggs.logConfig import logging
+from ease_dggs.logConfig import logging
 
 def _child_to_parent(gid, level=0):
     '''

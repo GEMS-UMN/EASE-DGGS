@@ -5,9 +5,9 @@ Validation functions of EASE-DGGS DGGS.
 This software is released under an Apache 2.0 license. Further details about the Apache 2.0 license are available in the license.txt file.
 '''
 
-from easedggs.logConfig import logger #, debug_logger
+from ease_dggs.logConfig import logger #, debug_logger
 import re
-from easedggs.constants import grid_spec, levels_specs
+from ease_dggs.constants import grid_spec, levels_specs
 
 # compile re in advance, to make grid_id_to_geo more flexible
 # so that you don't have to have all gids of same levelo

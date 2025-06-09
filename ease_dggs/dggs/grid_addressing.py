@@ -15,16 +15,16 @@ import geopandas as gpd
 from shapely import wkt
 from shapely.geometry import Point#, Polygon
 
-from easedggs.constants import grid_spec, levels_specs, ease_crs, geo_crs, cell_scale_factors
+from ease_dggs.constants import grid_spec, levels_specs, ease_crs, geo_crs, cell_scale_factors
 
-from easedggs.dggs.utils import pairwise_circle, flatten
-from easedggs.dggs.utils import format_response, gen_point_grid, get_polygon_corners
+from ease_dggs.dggs.utils import pairwise_circle, flatten
+from ease_dggs.dggs.utils import format_response, gen_point_grid, get_polygon_corners
 
-from easedggs.dggs.checks import check_level, validate_coords_lon_lat, validate_grid_ids, \
+from ease_dggs.dggs.checks import check_level, validate_coords_lon_lat, validate_grid_ids, \
     check_coords_range
-from easedggs.dggs.transforms import coords_lon_lat_to_coords_ease, coords_ease_to_coords_grid,\
+from ease_dggs.dggs.transforms import coords_lon_lat_to_coords_ease, coords_ease_to_coords_grid,\
     grid_xy_coord_to_ease_coord
-from easedggs.logConfig import logger
+from ease_dggs.logConfig import logger
 
 ######
 #
